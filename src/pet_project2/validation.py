@@ -4,9 +4,10 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OrdinalEncoder
 from pathlib import Path
 
-RAW_DATA_DIR = Path('./data/raw')
-INTERIM_DATA_DIR = Path('./data/interim')
-PROCESSED_DATA_DIR = Path('./data/processed')
+WORK_DIR = Path(__file__).resolve().parents[2]
+RAW_DATA_DIR = WORK_DIR / 'data' / 'raw'
+INTERIM_DATA_DIR = WORK_DIR / 'data' / 'interim'
+PROCESSED_DATA_DIR = WORK_DIR / 'data' / 'processed'
 
 df = pd.read_csv(RAW_DATA_DIR / 'hotel_bookings.csv')
 
@@ -92,11 +93,11 @@ df_int = (
     df.copy()
     .pipe(nan_formatting)
     .pipe(datatype_formatting)
-    .pipe(nan_imputation)
 )
 
 df_prep = (
     df_int.copy()
+    .pipe(nan_imputation)
     .pipe(label_encoding)
 )
 
