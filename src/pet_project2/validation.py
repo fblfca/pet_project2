@@ -5,9 +5,10 @@ from sklearn.preprocessing import OrdinalEncoder
 from pathlib import Path
 
 WORK_DIR = Path(__file__).resolve().parents[2]
-RAW_DATA_DIR = WORK_DIR / 'data' / 'raw'
-INTERIM_DATA_DIR = WORK_DIR / 'data' / 'interim'
-PROCESSED_DATA_DIR = WORK_DIR / 'data' / 'processed'
+DATA_DIR = WORK_DIR / 'data'
+RAW_DATA_DIR = DATA_DIR / 'raw'
+INTERIM_DATA_DIR = DATA_DIR / 'interim'
+PROCESSED_DATA_DIR = DATA_DIR / 'processed'
 
 df = pd.read_csv(RAW_DATA_DIR / 'hotel_bookings.csv')
 
