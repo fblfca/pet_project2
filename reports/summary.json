@@ -1,0 +1,53 @@
+{
+  "best_model": "LightGBM",
+  "best_params": {
+    "num_leaves": 15,
+    "learning_rate": 0.05,
+    "n_estimators": 180
+  },
+  "training_rows_final": 69916,
+  "test_rows": 17480,
+  "selected_threshold": 0.1,
+  "f1_threshold": 0.35,
+  "assumed_cost_fn": 200,
+  "assumed_cost_fp": 20,
+  "final_metrics": {
+    "accuracy": 0.8382151029748284,
+    "precision": 0.7384800965018095,
+    "recall": 0.6370447450572321,
+    "f1": 0.6840223463687151,
+    "roc_auc": 0.9035034593731465,
+    "pr_auc": 0.783844400992744,
+    "tn": 11591,
+    "fp": 1084,
+    "fn": 1744,
+    "tp": 3061,
+    "assumed_loss": 370480
+  },
+  "final_metrics_selected_threshold": {
+    "accuracy": 0.6658466819221968,
+    "precision": 0.45028790786948175,
+    "recall": 0.9764828303850156,
+    "f1": 0.6163546798029557,
+    "roc_auc": 0.9035034593731465,
+    "pr_auc": 0.783844400992744,
+    "tn": 6947,
+    "fp": 5728,
+    "fn": 113,
+    "tp": 4692,
+    "assumed_loss": 137160
+  },
+  "final_metrics_f1_threshold": {
+    "accuracy": 0.8233409610983982,
+    "precision": 0.6465767457742871,
+    "recall": 0.7881373569198751,
+    "f1": 0.7103732883136372,
+    "roc_auc": 0.9035034593731465,
+    "pr_auc": 0.783844400992744,
+    "tn": 10605,
+    "fp": 2070,
+    "fn": 1018,
+    "tp": 3787,
+    "assumed_loss": 245000
+  }
+}
