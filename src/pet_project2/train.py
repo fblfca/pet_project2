@@ -45,7 +45,7 @@ import optuna
 import joblib
 
 SEED = 67
-WORK_DIR = Path(__file__).resolve().parents[1]
+WORK_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = WORK_DIR / 'data' / 'interim'
 
 def data_load(path):
@@ -141,7 +141,7 @@ def model_objective(trial):
             ))
 
 def objective(trial):
-    score = cross_val_score(
+    scores = cross_val_score(
         model_objective(trial),
         X_sample,
         y_sample,
@@ -149,6 +149,8 @@ def objective(trial):
         cv=StratifiedKFold(n_splits=3, shuffle=True, random_state=SEED),
         verbose=-1
     )
+
+    return scores.mean()
 
 def get_best_params():
     study = optuna.create_study(
