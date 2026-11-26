@@ -65,7 +65,7 @@ def data_split(df):
         random_state=SEED
     )
 
-    train_size = X_train.shape[0] // 6
+    train_size = X_train.shape[0] // 8
 
     X_sample, _, y_sample, _ = train_test_split(
         X_train, y_train,
@@ -119,23 +119,23 @@ def model_objective(trial):
 
     if model == 'CatBoostClassifier':
         return cust_pipeline(CatBoostClassifier(
-            iterations=trial.suggest_int('iterations', 200, 700),
-            depth=trial.suggest_int('depth', 4, 20),
+            iterations=trial.suggest_int('iterations', 150, 500),
+            depth=trial.suggest_int('depth', 4, 10),
             learning_rate=trial.suggest_float(
                 'learning_rate', 0.01, 0.2, log=True
             ),
             verbose=False,
             random_seed=SEED,
-            thread_count=1,
+            thread_count=-1,
         ))
 
     return cust_pipeline(RandomForestClassifier(
                 criterion=trial.suggest_categorical('criterion', [
                     'gini', 'log_loss', 'entropy'
                 ]),
-                max_depth=trial.suggest_int('max_depth', 4, 20),
+                max_depth=trial.suggest_int('max_depth', 4, 12),
                 n_estimators=trial.suggest_int('n_estimators', 50, 300),
-                min_samples_leaf=trial.suggest_int('min_samples_leaf', 2, 50),
+                min_samples_leaf=trial.suggest_int('min_samples_leaf', 2, 20),
                 random_state=SEED,
                 n_jobs=-1
             ))
@@ -147,7 +147,7 @@ def objective(trial):
         y_sample,
         scoring='average_precision',
         cv=StratifiedKFold(n_splits=3, shuffle=True, random_state=SEED),
-        verbose=-1
+        verbose=0
     )
 
     return scores.mean()
@@ -184,7 +184,7 @@ def final_model(params: dict):
         learning_rate=params['learning_rate'],
         verbose=False,
         random_seed=SEED,
-        thread_count=1,
+        thread_count=-1,
     ))
 
 def main():
